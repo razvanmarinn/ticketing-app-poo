@@ -1,35 +1,21 @@
 #pragma once
-#include <Event.h>
-#include <Seats.h>
+#include "Seats.h"
 
 
-
-class Location {
+class location {
 	static int MAX_NR_OF_SEATS;
-	const int numberOfRows;
-	Seats** seats = nullptr;
-	Event** events = nullptr;
+	int numberOfRows;
+	Seats** seats;
 
 public:
-	Location();
+	location();
+	location(location& location);
 
 
-	inline int getNumberOfRows();
-	Seats* getSeats();
-	Event* getEvents();
+	 int getNumberOfRows();
+	 void getSeats();
+	 void getEvents();
 
 
-	void operator=(Location& location);
+	 void operator=(location& location);
 };
-
-//
-//class FotballStadium : public Location {
-//	
-//};
-//class Theater : public Location {
-//
-//};
-//
-//class Cinema : public Location {
-//
-//};

@@ -4,28 +4,31 @@
 #include <sstream>
 
 
-class date {
+class Date {
 	int year;
 	int day;
 	int month;
 
 
 public:
-	date(int year, int month, int day) : year(year), month(month), day(day) {
+	Date(int year, int month, int day) : year(year), month(month), day(day) {
 
 	}
 
-	date();
-	~date() {}
+	Date();
+	~Date() {}
 
 	
-	inline int getYear();
-	inline int getDay();
-	inline int getMonth();
-	inline void setYear();
-	inline void setDay();
-	inline void setMonth();
+	 int getYear();
+	 int getDay();
+	 int getMonth();
+	 void setYear();
+	 void setDay();
+	 void setMonth();
 
-	inline std::string dateToString();
+	 std::string dateToString();
+
+
+	 void operator=(Date& date);
 
 };

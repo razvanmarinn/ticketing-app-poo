@@ -1,5 +1,5 @@
 #pragma once
-#include <Ticket.h>
+#include "Ticket.h"
 
 class User {
 	Ticket** tickets = nullptr;
@@ -9,11 +9,12 @@ class User {
 
 public:
 	User();
+	User(int balance);
 
-	inline void setTickets(Ticket ticket);
-	inline void setBalance(int newBalance);
-	inline Ticket* getTickets();
-	inline void buyTicket(Ticket ticket);
+	 void setTickets(Ticket ticket);
+	 void setBalance(int newBalance);
+	 Ticket* getTickets();
+	 void buyTicket(Ticket ticket);
 
 
 

@@ -1,6 +1,6 @@
 #include <iostream>
-#include <Ticket.cpp>
-#include <Date.cpp>
+#include "Ticket.h"
+#include "Date.h"
 void main() {
 	//FotballTicket fotballticket;
 	//FotballTicket fotballticket2;
@@ -8,6 +8,6 @@ void main() {
 	//std::cout << fotballticket.getId() << std::endl;
 
 
-	date ddate(2002, 12, 20);
+	Date ddate(2002, 12, 20);
 	std::cout << std::endl << ddate.dateToString();
 }

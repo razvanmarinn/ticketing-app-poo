@@ -1,6 +1,5 @@
 #pragma once
-
-#include <Event.h>
+#include "Event.h"
 
 
 enum FotballZones {
@@ -27,10 +26,10 @@ public:
 	Ticket(); 
 
 
-	inline int getId();
-	inline int getPrice();
-	inline void setPrice(int price);
-	inline bool checkTicket(int id);
+	int getId();
+	int getPrice();
+	void setPrice(int price);
+	bool checkTicket(int id);
 
 
 	friend class FotballTicket;
@@ -39,47 +38,33 @@ public:
 };
 
 
-class FotballTicket : public Ticket {
-	FotballZones zone;
 
 
-public:
-	FotballTicket(Event event, FotballZones zone) : Ticket() {
-		this->event = event;
-		this->zone = zone;
-		if (zone == 1) {
-			this->setPrice(3500);
-		}
-		this->setPrice(5000);
-		
-	}
-};
-
-
-class CinemaTicket : public Ticket {
-	CinemaZones zone;
-public:
-	CinemaTicket(Event event, CinemaZones zone) : Ticket() {
-		this->event = event;
-		this->zone = zone;
-		if (zone == 1) {
-			this->setPrice(3500);
-		}
-		this->setPrice(5000);
-
-	}
-};
-
-class TheaterTicket : public Ticket {
-	TheaterZones zone;
-public:
-	TheaterTicket(Event event, TheaterZones zone) : Ticket() {
-		this->event = event;
-		this->zone = zone;
-		if (zone == 1) {
-			this->setPrice(3500);
-		}
-		this->setPrice(5000);
-
-	}
-};
+//
+//class CinemaTicket : public Ticket {
+//	CinemaZones zone;
+//public:
+//	CinemaTicket(Event event, CinemaZones zone) : Ticket() {
+//		this->event = event;
+//		this->zone = zone;
+//		if (zone == 1) {
+//			this->setPrice(3500);
+//		}
+//		this->setPrice(5000);
+//
+//	}
+//};
+//
+//class TheaterTicket : public Ticket {
+//	TheaterZones zone;
+//public:
+//	TheaterTicket(Event event, TheaterZones zone) : Ticket() {
+//		this->event = event;
+//		this->zone = zone;
+//		if (zone == 1) {
+//			this->setPrice(3500);
+//		}
+//		this->setPrice(5000);
+//
+//	}
+//};

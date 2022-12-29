@@ -14,5 +14,8 @@ class Seats {
 	const int seatId;
 	Avalaible avalaibility;
 public:
-	friend std::ostream& operator<< (std::ostream& out, const Avalaible& availability)
+
+	Seats();
+	~Seats();
+	 friend std::ostream& operator<< (std::ostream& out, const Avalaible& availability);
 };

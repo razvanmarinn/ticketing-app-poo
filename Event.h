@@ -1,22 +1,22 @@
 #pragma once
-#include <string>
-#include <Location.h>
-#include <Date.h>
+#include "Location.h"
+#include "Date.h"
 
 
 class Event {
-	date dateOfEvent;
-	char* name = nullptr;
-	int duration; // in minutes
-	Location locationOfEvent;
+	Date dateOfEvent;
+	char* nameOfEvent = nullptr;
+	int durationOfEvent; // in minutes
+	location locationOfEvent;
 
 
 public:
 	Event();
-	Event(date dated, char* name, int duration, Location location);
+	Event(Date dated, char* name, int duration, location location_of_event);
 	Event(Event& event);
+	~Event();
 
 
-
-	void operator=(Event& event);
+	 void operator=(Event& event);
 };
+
