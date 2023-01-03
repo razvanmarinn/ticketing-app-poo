@@ -12,11 +12,11 @@ class Event {
 
 public:
 	Event();
-	Event(Date dated, char* name, int duration, location location_of_event);
+	Event(Date dated,const char* name, int duration, location location_of_event);
 	Event(Event& event);
 	~Event();
 
-
-	 void operator=(Event& event);
+	char* getName();
+	void operator=(Event& event);
 };
 

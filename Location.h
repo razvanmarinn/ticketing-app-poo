@@ -3,19 +3,23 @@
 
 
 class location {
-	static int MAX_NR_OF_SEATS;
-	int numberOfRows;
-	Seats** seats;
+	
+	int id;
+	int numberOfSeats;
+	Seats* seats;
+	static int MAX_NR_OF_SEATS_PER_ROW;
 
 public:
 	location();
+	location(int id,int numberOfSeats, Seats* seats);
 	location(location& location);
 
 
-	 int getNumberOfRows();
-	 void getSeats();
-	 void getEvents();
+	int getNumberOfSeats();
+	int getId();
+	Seats getSeats();
+	void getEvents();
+	void print();
 
-
-	 void operator=(location& location);
+	void operator=(location& location);
 };

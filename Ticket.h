@@ -19,15 +19,16 @@ enum CinemaZones {
 
 class Ticket {
 	const int ticketId;
-	int price;
+	int price = 0;
 	Event event;
 
 public:
 	Ticket(); 
 
-
+	Ticket(int price, Event event);
 	int getId();
 	int getPrice();
+	std::string getNameOfTheEvent();
 	void setPrice(int price);
 	bool checkTicket(int id);
 
@@ -35,6 +36,9 @@ public:
 	friend class FotballTicket;
 	friend class CinemaTicket;
 	friend class TheaterTicket;
+
+
+	void operator=(Ticket& ticket);
 };
 
 

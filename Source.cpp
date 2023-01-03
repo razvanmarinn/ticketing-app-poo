@@ -1,13 +1,54 @@
 #include <iostream>
 #include "Ticket.h"
 #include "Date.h"
-void main() {
-	//FotballTicket fotballticket;
+#include "Seats.h"
+#include "Event.h"
+#include "User.h"
+#include "FotballTicket.h"
+
+int main() {
+
 	//FotballTicket fotballticket2;
 	//CinemaTicket cinematicket;
 	//std::cout << fotballticket.getId() << std::endl;
 
 
 	Date ddate(2002, 12, 20);
+	Date ddate2(2002, 12, 21);
 	std::cout << std::endl << ddate.dateToString();
+
+	Seats seat(30, Avalaible::FREE);
+	Seats seat2(10, Avalaible::ocuppied);
+	int nr_of_seats = 2;
+	Seats* setx = new Seats[nr_of_seats];
+	setx[0] = seat;
+	setx[1] = seat2;
+
+
+	location location(1, 2, setx);
+
+	Event event(ddate, "TEST", 30, location);
+	Event event2(ddate2, "TEST2", 70, location);
+	Event event3(ddate2, "Meci_fotbal", 90, location);
+
+	FotballTicket fotballticket(event3, FotballZones::Stand1, 100);
+	Ticket ticket(1000, event);
+	Ticket ticket5(3000, event);
+	Ticket ticket2(900, event2);
+	auto nr_of_tickets = 3;
+	Ticket* tickets = new Ticket[nr_of_tickets];
+	tickets[0] = ticket;
+	tickets[1] = ticket2;
+	tickets[2] = ticket5;
+
+	location.print();
+
+	std::cout << std::endl << std::endl;
+	User razvan(5000, nr_of_tickets, tickets);
+
+	razvan.print();
+
+
+	User Omar(300, fotballticket);
+	Omar.print();
 }

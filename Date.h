@@ -22,9 +22,9 @@ public:
 	 int getYear();
 	 int getDay();
 	 int getMonth();
-	 void setYear();
-	 void setDay();
-	 void setMonth();
+	 void setYear(int year);
+	 void setDay(int day);
+	 void setMonth(int month);
 
 	 std::string dateToString();
 
