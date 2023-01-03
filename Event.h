@@ -8,11 +8,12 @@ class Event {
 	char* nameOfEvent = nullptr;
 	int durationOfEvent; // in minutes
 	location locationOfEvent;
+	int avalaible_seat;
 
 
 public:
 	Event();
-	Event(Date dated,const char* name, int duration, location location_of_event);
+	Event(Date dated,const char* name, int duration, location location_of_event, int avalaible_seats);
 	Event(Event& event);
 	~Event();
 

@@ -24,7 +24,7 @@ class Ticket {
 
 public:
 	Ticket(); 
-
+	Ticket(Event event);
 	Ticket(int price, Event event);
 	int getId();
 	int getPrice();
@@ -42,23 +42,24 @@ public:
 };
 
 
+class FotballTicket : public Ticket {
+	FotballZones zone = FotballZones::Stand1;
+public:
+
+	FotballTicket(Event event, FotballZones zone);
+
+};
 
 
-//
-//class CinemaTicket : public Ticket {
-//	CinemaZones zone;
-//public:
-//	CinemaTicket(Event event, CinemaZones zone) : Ticket() {
-//		this->event = event;
-//		this->zone = zone;
-//		if (zone == 1) {
-//			this->setPrice(3500);
-//		}
-//		this->setPrice(5000);
-//
-//	}
-//};
-//
+
+
+class CinemaTicket : public Ticket {
+	CinemaZones zone;
+public:
+	CinemaTicket(Event event, CinemaZones zone);
+
+};
+
 //class TheaterTicket : public Ticket {
 //	TheaterZones zone;
 //public:

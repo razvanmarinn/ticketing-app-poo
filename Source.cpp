@@ -4,7 +4,7 @@
 #include "Seats.h"
 #include "Event.h"
 #include "User.h"
-#include "FotballTicket.h"
+
 
 int main() {
 
@@ -27,11 +27,12 @@ int main() {
 
 	location location(1, 2, setx);
 
-	Event event(ddate, "TEST", 30, location);
-	Event event2(ddate2, "TEST2", 70, location);
-	Event event3(ddate2, "Meci_fotbal", 90, location);
+	Event event(ddate, "TEST", 30, location, 12);
+	Event event2(ddate2, "TEST2", 70, location, 20);
+	Event event3(ddate2, "Meci_fotbal", 90, location, 90000);
 
-	FotballTicket fotballticket(event3, FotballZones::Stand1, 100);
+	FotballTicket fotballticket(event3, FotballZones::Stand1);
+	CinemaTicket cinematicket(event2, CinemaZones::VIP);
 	Ticket ticket(1000, event);
 	Ticket ticket5(3000, event);
 	Ticket ticket2(900, event2);
@@ -49,6 +50,10 @@ int main() {
 	razvan.print();
 
 
-	User Omar(300, fotballticket);
+	User Omar(30000);
 	Omar.print();
+	Omar.buyTicket(cinematicket);
+	Omar.print();
+	
+
 }
