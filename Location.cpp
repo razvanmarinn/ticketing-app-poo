@@ -1,7 +1,17 @@
 #include"Location.h"
 
+std::ostream& operator<<(std::ostream& out,  location& location) {
+	out << std::endl << "Locatiom ID :" << location.getId();
+	out << std::endl << "Number of seats " << location.getNumberOfSeats();
+	out << std::endl << "Avalaiblity of the seats(1 = true , 0 = false )";
+	for (auto i = 0; i < location.numberOfSeats; i++) {
+		out << std::endl << "seat " << i + 1 << " availability " << location.seats[i].getAvalaibility() << " and id of the seat -> " << location.seats[i].getId();
+	}
+	return out;
+}
+location::~location() {
 
-
+}
 
 void location::operator=(location& location) {
 	this->numberOfSeats = location.numberOfSeats;
@@ -10,7 +20,11 @@ void location::operator=(location& location) {
 location::location() {
 
 }
-location::location(location& location) {
+location::location(location& location):id(location.id), numberOfSeats(location.numberOfSeats){
+	this->seats = new Seats[location.numberOfSeats];
+	for (auto i = 0; i < location.numberOfSeats; i++) {
+		this->seats[i] = location.seats[i];
+	}
 
 }
 location::location(int id,int numberOfSeats,  Seats* seats):id(id), numberOfSeats(numberOfSeats) {
@@ -20,7 +34,7 @@ location::location(int id,int numberOfSeats,  Seats* seats):id(id), numberOfSeat
 	}
 }
 void location::getEvents() {
-	std::cout<<"ASDD";
+	std::cout<<"to be implemented";
 }
 int location::getNumberOfSeats() {
 	return this->numberOfSeats;

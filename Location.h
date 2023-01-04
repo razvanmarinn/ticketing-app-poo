@@ -13,7 +13,7 @@ public:
 	location();
 	location(int id,int numberOfSeats, Seats* seats);
 	location(location& location);
-
+	~location();
 
 	int getNumberOfSeats();
 	int getId();
@@ -22,4 +22,5 @@ public:
 	void print();
 
 	void operator=(location& location);
+	friend std::ostream& operator<<(std::ostream& out, location& location);
 };

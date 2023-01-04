@@ -17,6 +17,7 @@ enum CinemaZones {
 };
 
 
+
 class Ticket {
 	const int ticketId;
 	int price = 0;
@@ -31,14 +32,15 @@ public:
 	std::string getNameOfTheEvent();
 	void setPrice(int price);
 	bool checkTicket(int id);
-
+	virtual void print() = 0;
 
 	friend class FotballTicket;
 	friend class CinemaTicket;
-	friend class TheaterTicket;
+	//friend class TheaterTicket;
 
 
 	void operator=(Ticket& ticket);
+	void operator+(int price);
 };
 
 
@@ -47,29 +49,25 @@ class FotballTicket : public Ticket {
 public:
 
 	FotballTicket(Event event, FotballZones zone);
-
+	FotballZones getZone();
+	void print() override;
 };
 
 
 
 
 class CinemaTicket : public Ticket {
-	CinemaZones zone;
+	CinemaZones zone = CinemaZones::Normal;
 public:
 	CinemaTicket(Event event, CinemaZones zone);
-
+	CinemaZones getZone();
+	void print() override;
 };
 
-//class TheaterTicket : public Ticket {
-//	TheaterZones zone;
-//public:
-//	TheaterTicket(Event event, TheaterZones zone) : Ticket() {
-//		this->event = event;
-//		this->zone = zone;
-//		if (zone == 1) {
-//			this->setPrice(3500);
-//		}
-//		this->setPrice(5000);
-//
-//	}
-//};
+class TheaterTicket : public Ticket {
+	TheaterZones zone;
+public:
+	TheaterTicket(Event event, TheaterZones zone);
+	TheaterZones getZone();
+	void print() override;
+};

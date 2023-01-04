@@ -9,6 +9,15 @@ Event::~Event() {
 	delete[] this->nameOfEvent;
 }
 
+std::ostream& operator<<(std::ostream& out, Event& event) {
+	out << event.dateOfEvent.dateToString();
+	out <<  event.getName();
+	out << event.durationOfEvent;
+	out << event.locationOfEvent.getId();
+	out << event.avalaible_seat;
+	return out;
+}
+
 Event::Event(Date dated, const char* name, int duration, location location_of_event, int avalaible_seats):dateOfEvent(dated), durationOfEvent(duration), locationOfEvent(location_of_event), avalaible_seat(avalaible_seats) {
 	this->nameOfEvent = new char[strlen(name) + 1];
 	strcpy(this->nameOfEvent, name);

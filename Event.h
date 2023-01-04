@@ -19,5 +19,6 @@ public:
 
 	char* getName();
 	void operator=(Event& event);
+	friend std::ostream& operator<<(std::ostream& out, Event& event);
 };
 

@@ -2,7 +2,7 @@
 #include "Ticket.h"
 
 class User {
-	Ticket* tickets = nullptr;
+	Ticket** tickets ;
 	int nr_of_tickets;
 	int balance;
 
@@ -11,15 +11,17 @@ class User {
 public:
 	User();
 	User(int balance);
-	User(int balance, int nr_of_tickets, Ticket* ticket);
-	User(int balance, Ticket ticket);
+	User(int balance, int nr_of_tickets, Ticket** ticket);
+	User(int balance, Ticket* ticket);
 
-	void setTickets(Ticket ticket);
+	void setTickets(Ticket* ticket);
 	void setBalance(int newBalance);
+	int getNrOfTickets();
 	void print();
-	void buyTicket(Ticket ticket);
+	void buyTicket(Ticket* ticket);
 
 
 	
-	void operator++();
+	void operator++(int);
+	User& operator+(const User& other);
 };

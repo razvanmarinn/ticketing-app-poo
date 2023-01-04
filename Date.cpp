@@ -4,6 +4,13 @@ Date::Date() {
 
 }
 
+
+std::ostream& operator<<(std::ostream& out, Date& date) {
+	out << date.dateToString();
+	return out;
+}
+
+
 std::string Date::dateToString() {
 	std::ostringstream dateString;
 	dateString << this->year << "-" << this->month << "-" << this->day;

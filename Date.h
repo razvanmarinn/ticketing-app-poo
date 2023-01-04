@@ -30,5 +30,6 @@ public:
 
 
 	 void operator=(Date& date);
+	 friend std::ostream& operator<<(std::ostream& out, Date& date);
 
 };
