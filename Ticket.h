@@ -41,16 +41,19 @@ public:
 
 	void operator=(Ticket& ticket);
 	void operator+(int price);
+
+	friend std::ostream& operator<<(std::ostream& out, Ticket& ticket);
 };
 
 
 class FotballTicket : public Ticket {
 	FotballZones zone = FotballZones::Stand1;
 public:
-
+	FotballTicket();
 	FotballTicket(Event event, FotballZones zone);
 	FotballZones getZone();
 	void print() override;
+	friend std::istream& operator>>(std::istream& in, FotballTicket* ticket);
 };
 
 
@@ -59,15 +62,19 @@ public:
 class CinemaTicket : public Ticket {
 	CinemaZones zone = CinemaZones::Normal;
 public:
+	CinemaTicket();
 	CinemaTicket(Event event, CinemaZones zone);
 	CinemaZones getZone();
 	void print() override;
+	friend std::istream& operator>>(std::istream& in, CinemaTicket* ticket);
 };
 
 class TheaterTicket : public Ticket {
 	TheaterZones zone;
 public:
+	TheaterTicket();
 	TheaterTicket(Event event, TheaterZones zone);
 	TheaterZones getZone();
 	void print() override;
+	friend std::istream& operator>>(std::istream& in, TheaterTicket* ticket);
 };

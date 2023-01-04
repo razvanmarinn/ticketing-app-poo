@@ -14,11 +14,11 @@ std::ostream& operator<<(std::ostream& out, Event& event) {
 	out <<  event.getName();
 	out << event.durationOfEvent;
 	out << event.locationOfEvent.getId();
-	out << event.avalaible_seat;
+	out << event.nr_of_tickets;
 	return out;
 }
 
-Event::Event(Date dated, const char* name, int duration, location location_of_event, int avalaible_seats):dateOfEvent(dated), durationOfEvent(duration), locationOfEvent(location_of_event), avalaible_seat(avalaible_seats) {
+Event::Event(Date dated, const char* name, int duration, location location_of_event, int nr_of_tickets):dateOfEvent(dated), durationOfEvent(duration), locationOfEvent(location_of_event), nr_of_tickets(nr_of_tickets) {
 	this->nameOfEvent = new char[strlen(name) + 1];
 	strcpy(this->nameOfEvent, name);
 }
@@ -29,7 +29,7 @@ Event::Event(Event& event) {
 	this->nameOfEvent = new char[strlen(event.nameOfEvent) + 1];
 	strcpy(this->nameOfEvent, event.nameOfEvent);
 	this->locationOfEvent = event.locationOfEvent;
-	this->avalaible_seat = event.avalaible_seat;
+	this->nr_of_tickets = event.nr_of_tickets;
 }
 
 void Event::operator=(Event& event) {
@@ -38,11 +38,18 @@ void Event::operator=(Event& event) {
 	this->nameOfEvent = new char[strlen(event.nameOfEvent) + 1];
 	strcpy(this->nameOfEvent, event.nameOfEvent);
 	this->locationOfEvent = event.locationOfEvent;
-	this->avalaible_seat = event.avalaible_seat;
+	this->nr_of_tickets = event.nr_of_tickets;
 }
 
 char* Event::getName() {
 	char* copy = new char[strlen(this->nameOfEvent) + 1];
 	strcpy(copy, this->nameOfEvent);
 	return copy;
+}
+
+std::istream& operator>>(std::istream& in, Event& event) {
+	std::cout << "Input date for the event ";
+	in >> event.dateOfEvent;
+	std::cout << "Location of the event: ";
+
 }

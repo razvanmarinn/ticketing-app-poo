@@ -1,10 +1,24 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "Date.h"
 
 Date::Date() {
 
 }
 
+std::istream& operator>>(std::istream& in, Date& date) {
+	char buffer[128];
+	in.getline(buffer, sizeof(buffer));
 
+	char* occurence = strtok(buffer, ",");
+	date.year = atoi(occurence);
+
+	occurence = strtok(nullptr, ",");
+	date.month = atoi(occurence);
+
+	occurence = strtok(nullptr, ",");
+	date.day = atoi(occurence);
+	return in;
+}
 std::ostream& operator<<(std::ostream& out, Date& date) {
 	out << date.dateToString();
 	return out;

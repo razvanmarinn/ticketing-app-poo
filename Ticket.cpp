@@ -1,9 +1,37 @@
 #include "Ticket.h"
 #include <stdlib.h>
 
-
+FotballTicket::FotballTicket(){
+}
+CinemaTicket::CinemaTicket() {
+}
+TheaterTicket::TheaterTicket() {
+}
 Ticket::Ticket():ticketId(rand()){
 }
+std::istream& operator>>(std::istream& in, FotballTicket* ticket) {
+	int i;
+	in >> i;
+	return in;
+}
+std::istream& operator>>(std::istream& in, TheaterTicket* ticket) {
+	int i;
+	in >> i;
+	return in;
+}
+std::istream& operator>>(std::istream& in, CinemaTicket* ticket) {
+	int i;
+	in >> i;
+	return in;
+}
+std::ostream& operator<<(std::ostream& out, Ticket& ticket) {
+	out << std::endl << "Ticket id " << ticket.getId();
+	out << std::endl << "Ticket event " << ticket.getNameOfTheEvent();
+	out << std::endl << "Ticket price " << ticket.getPrice();
+}
+
+
+
 Ticket::Ticket(Event event) : ticketId(rand()) {
 	this->event = event;
 	this->setPrice(0);
