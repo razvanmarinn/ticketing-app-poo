@@ -47,9 +47,23 @@ char* Event::getName() {
 	return copy;
 }
 
-std::istream& operator>>(std::istream& in, Event& event) {
-	std::cout << "Input date for the event ";
-	in >> event.dateOfEvent;
-	std::cout << "Location of the event: ";
+void Event::setName(char* name) {
+	this->nameOfEvent = new char[strlen(name) + 1];
+	strcpy(nameOfEvent, name);
+}
 
+std::istream& operator>>(std::istream& in, Event& event) {
+	std::cout << "Input date for the event " << std::endl;
+	in >> event.dateOfEvent;
+	std::cout << "Location of the event: " << std::endl;
+	in >> event.locationOfEvent;
+	std::cout << "Duration of the event " << std::endl;
+	in >> event.durationOfEvent;
+	std::cout << "Name of the event " << std::endl;
+	char* name = nullptr;
+	in >> name;
+	event.setName(name);
+	std::cout << "Nr of tickets avalaible " << std::endl;
+	in >> event.nr_of_tickets;
+	return in;
 }

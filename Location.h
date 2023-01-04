@@ -23,4 +23,5 @@ public:
 
 	void operator=(location& location);
 	friend std::ostream& operator<<(std::ostream& out, location& location);
+	friend std::istream& operator>>(std::istream& in, location& location);
 };

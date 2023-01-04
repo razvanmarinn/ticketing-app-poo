@@ -18,6 +18,7 @@ public:
 	~Event();
 
 	char* getName();
+	void setName(char* name);
 	void operator=(Event& event);
 	friend std::ostream& operator<<(std::ostream& out, Event& event);
 	friend std::istream& operator>>(std::istream& in, Event& event);

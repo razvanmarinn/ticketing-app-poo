@@ -9,19 +9,59 @@ TheaterTicket::TheaterTicket() {
 }
 Ticket::Ticket():ticketId(rand()){
 }
+
 std::istream& operator>>(std::istream& in, FotballTicket* ticket) {
-	int i;
-	in >> i;
+	std::cout << "Enter the event name: ";
+	Event event;
+	in >> event;
+
+	std::cout << "Enter the price: ";
+	int price;
+	in >> price;
+	ticket->setPrice(price);
+
+	std::cout << "Enter the zone: ";
+	int zone;
+	in >> zone;
+	ticket->zone = static_cast<FotballZones>(zone);
+
 	return in;
 }
+
+
+
 std::istream& operator>>(std::istream& in, TheaterTicket* ticket) {
-	int i;
-	in >> i;
+	std::cout << "Enter the event name: ";
+	Event event;
+	in >> event;
+
+	std::cout << "Enter the price: ";
+	int price;
+	in >> price;
+	ticket->setPrice(price);
+
+	std::cout << "Enter the zone: ";
+	int zone;
+	in >> zone;
+	ticket->zone = static_cast<TheaterZones>(zone);
+
 	return in;
 }
 std::istream& operator>>(std::istream& in, CinemaTicket* ticket) {
-	int i;
-	in >> i;
+	std::cout << "Enter the event name: ";
+	Event event;
+	in >> event;
+
+	std::cout << "Enter the price: ";
+	int price;
+	in >> price;
+	ticket->setPrice(price);
+
+	std::cout << "Enter the zone: ";
+	int zone;
+	in >> zone;
+	ticket->zone = static_cast<CinemaZones>(zone);
+
 	return in;
 }
 std::ostream& operator<<(std::ostream& out, Ticket& ticket) {
@@ -81,10 +121,10 @@ void Ticket::operator+(int price) {
 
 FotballTicket::FotballTicket(Event event, FotballZones zone) : Ticket(0 , event) {
 	this->zone = zone;
-	if (zone == 1) {
-		this->setPrice(3500);
+	if (zone == 0) {
+		this->setPrice(350);
 	}
-	this->setPrice(5000);
+	this->setPrice(500);
 
 }
 

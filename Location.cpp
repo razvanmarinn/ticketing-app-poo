@@ -1,5 +1,23 @@
 #include"Location.h"
 
+
+
+
+std::istream& operator>>(std::istream& in, location& location) {
+	std::cout << "Enter location id " << std::endl;
+	in >> location.id;
+	std::cout << "Enter number of seats " << std::endl;
+	in >> location.numberOfSeats;
+	std::cout << "Enter seats ";
+	for (auto i = 0; i < location.numberOfSeats; i++) {
+		std::cout << std::endl;
+		in >> location.seats[i];
+	}
+	return in;
+	
+}
+
+
 std::ostream& operator<<(std::ostream& out,  location& location) {
 	out << std::endl << "Locatiom ID :" << location.getId();
 	out << std::endl << "Number of seats " << location.getNumberOfSeats();

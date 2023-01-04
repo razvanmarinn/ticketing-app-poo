@@ -10,8 +10,23 @@ int main(int argc, char* argv[]) {
 	
 
 	User Razvan(30000);
+	Date date(1999, 10, 10);
+	Seats seat1(1, Avalaible::FREE);
+	Seats seat2(2, Avalaible::FREE);
+	Seats seat3(3, Avalaible::FREE);
+	Seats seat4(4, Avalaible::FREE);
 
-	
+
+	Seats* seats = new Seats[4];
+	seats[0] = seat1;
+	seats[1] = seat2;
+	seats[2] = seat3;
+	seats[3] = seat4;
+	location location1(1, 4, seats);
+	Event event(date, "Fotball Meci", 90 , location1, 4);
+	FotballTicket* fotbalticket = new FotballTicket(event, FotballZones::Stand1);
+	FotballTicket* fotbalticket2 = new FotballTicket(event, FotballZones::Stand2);
+
 	if (argc > 1) {
 		std::string filename = argv[1];
 		std::cout << "Processing file: " << filename << std::endl;
@@ -19,9 +34,13 @@ int main(int argc, char* argv[]) {
 	}
 	else {
 		std::cout << "No file specified, using menu mode." << std::endl;
+		std::cout << "Menu:" << std::endl;
+		std::cout << "Avalaible tickets are :";
+		fotbalticket->print();
+		fotbalticket2->print();
 		// Use menu mode here
 		while (true) {
-			std::cout << "Menu:" << std::endl;
+
 			std::cout << "1. Buy tickets" << std::endl;
 			std::cout << "2. List tickets" << std::endl;
 			std::cout << "3. Quit" << std::endl;
@@ -32,43 +51,26 @@ int main(int argc, char* argv[]) {
 
 			switch (choice) {
 			case 1: {
-				std::cout << "1. Buy fotball ticket" << std::endl;
-				std::cout << "2. Buy cinema ticket" << std::endl;
-				std::cout << "3.Buy theater ticket" << std::endl;
-				std::cout << "4. Quit" << std::endl;
+				std::cout << std::endl << "Which zone do you want?" << std::endl;
+				std::cout << "1.Stand1" << std::endl;
+				std::cout << "2. Stand2" << std::endl;
+				std::cout << "3. Quit" << std::endl;
+
 				int choice2;
 				std::cin >> choice2;
+
 				switch (choice2) {
 				case 1: {
 
-					FotballTicket* Ticket = new FotballTicket();
-					std::cin >> Ticket;
-
-					Razvan.buyTicket(Ticket);
+					Razvan.buyTicket(fotbalticket);
 
 				};break;
 				case 2: {
-
-					CinemaTicket* Ticket = new CinemaTicket();
-					std::cin >> Ticket;
-
-					Razvan.buyTicket(Ticket);
+					Razvan.buyTicket(fotbalticket2);
 				};break;
-				case 3: {
 
-					TheaterTicket* Ticket = new TheaterTicket();
-					std::cin >> Ticket;
 
-					Razvan.buyTicket(Ticket);
-				};break;
 				}
-			/*	Ticket ticket();
-				std::cin >> ticket;
-
-				
-				Razvan.buyTicket(ticket);*/
-				break;
-			}
 			case 2:
 				Razvan.print();
 				break;
@@ -78,10 +80,11 @@ int main(int argc, char* argv[]) {
 				std::cout << "Invalid choice." << std::endl;
 				break;
 			}
+			}
+			
 		}
 		return 0;
 	}
-
 
 	//Date ddate(2002, 12, 20);
 	//Date ddate2(2002, 12, 21);

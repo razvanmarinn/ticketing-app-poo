@@ -1,6 +1,17 @@
 #include "Seats.h"
 
-
+std::istream& operator>>(std::istream& in, Seats& seat) {
+	std::cout  << std::endl << " Enter the avalaibility: ";
+	int avalaiblity;
+	in >> avalaiblity;
+	switch (avalaiblity) {
+	case Avalaible::FREE:
+		std::cout << "free"; break;
+	case Avalaible::ocuppied:
+		std::cout << "ocuppied"; break;
+	}
+	return in;
+}
 std::ostream& operator<< (std::ostream& out,  Seats& seat) {
 	switch (seat.avalaibility) {
 	case Avalaible::FREE:

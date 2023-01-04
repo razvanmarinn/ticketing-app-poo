@@ -6,7 +6,7 @@ Date::Date() {
 }
 
 std::istream& operator>>(std::istream& in, Date& date) {
-	char buffer[128];
+	/*char buffer[128];
 	in.getline(buffer, sizeof(buffer));
 
 	char* occurence = strtok(buffer, ",");
@@ -16,7 +16,15 @@ std::istream& operator>>(std::istream& in, Date& date) {
 	date.month = atoi(occurence);
 
 	occurence = strtok(nullptr, ",");
-	date.day = atoi(occurence);
+	date.day = atoi(occurence);*/
+
+	std::cout << "Enter year" << std::endl;
+	in >> date.year;
+	std::cout << "Enter month" << std::endl;
+	in >> date.month;
+	std::cout << "Enter day" << std::endl;
+	in >> date.day;
+
 	return in;
 }
 std::ostream& operator<<(std::ostream& out, Date& date) {

@@ -26,4 +26,5 @@ public:
 
 	void operator=(Seats& seat);
 	friend std::ostream& operator<<(std::ostream& out, Seats& seat);
+	friend std::istream& operator>>(std::istream& out, Seats& seat);
 };

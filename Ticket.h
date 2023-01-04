@@ -21,6 +21,7 @@ enum CinemaZones {
 class Ticket {
 	const int ticketId;
 	int price = 0;
+protected:
 	Event event;
 
 public:
