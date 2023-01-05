@@ -50,6 +50,7 @@ User::User(int balance, int nr_of_tickets, Ticket** ticket) {
 	this->tickets = new Ticket*[nr_of_tickets];
 	for (auto i = 0; i < nr_of_tickets; i++) {
 		this->tickets[i] = ticket[i];
+		this->tickets[i]->setAvalaibility();
 	}
 }
 
@@ -68,6 +69,7 @@ User::User(int balance, Ticket* ticket) {
 void User::buyTicket(Ticket* ticket) {
 	this->setTickets(ticket);
 	this->balance = this->balance - ticket->getPrice();
+	ticket->setAvalaibility();
 }
 
 

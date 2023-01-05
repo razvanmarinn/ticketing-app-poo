@@ -9,6 +9,18 @@ TheaterTicket::TheaterTicket() {
 }
 Ticket::Ticket():ticketId(rand()){
 }
+CinemaTicket::CinemaTicket(CinemaTicket& other) :Ticket(other.getPrice(), other.event), zone(other.zone) {
+}
+
+bool Ticket::getAvalaiblity() {
+	return this->avalaible;
+}
+
+
+void Ticket::setAvalaibility() {
+	this->avalaible = true;
+
+}
 
 std::istream& operator>>(std::istream& in, FotballTicket* ticket) {
 	std::cout << "Enter the event name: ";
@@ -19,6 +31,10 @@ std::istream& operator>>(std::istream& in, FotballTicket* ticket) {
 	int price;
 	in >> price;
 	ticket->setPrice(price);
+	bool avalaible;
+	std::cout << "Enter avalaibility ";
+	in >> avalaible;
+	ticket->avalaible = avalaible;
 
 	std::cout << "Enter the zone: ";
 	int zone;
@@ -39,7 +55,10 @@ std::istream& operator>>(std::istream& in, TheaterTicket* ticket) {
 	int price;
 	in >> price;
 	ticket->setPrice(price);
-
+	bool avalaible;
+	std::cout << "Enter avalaibility ";
+	in >> avalaible;
+	ticket->avalaible = avalaible;
 	std::cout << "Enter the zone: ";
 	int zone;
 	in >> zone;
@@ -56,7 +75,10 @@ std::istream& operator>>(std::istream& in, CinemaTicket* ticket) {
 	int price;
 	in >> price;
 	ticket->setPrice(price);
-
+	bool avalaible;
+	std::cout << "Enter avalaibility ";
+	in >> avalaible;
+	ticket->avalaible = avalaible;
 	std::cout << "Enter the zone: ";
 	int zone;
 	in >> zone;
@@ -68,6 +90,8 @@ std::ostream& operator<<(std::ostream& out, Ticket& ticket) {
 	out << std::endl << "Ticket id " << ticket.getId();
 	out << std::endl << "Ticket event " << ticket.getNameOfTheEvent();
 	out << std::endl << "Ticket price " << ticket.getPrice();
+
+	return out;
 }
 
 

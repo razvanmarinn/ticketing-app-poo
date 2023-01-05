@@ -21,15 +21,18 @@ enum CinemaZones {
 class Ticket {
 	const int ticketId;
 	int price = 0;
+	
 protected:
 	Event event;
-
+	bool avalaible;
 public:
 	Ticket(); 
 	Ticket(Event event);
 	Ticket(int price, Event event);
 	int getId();
 	int getPrice();
+	bool getAvalaiblity();
+	void setAvalaibility();
 	std::string getNameOfTheEvent();
 	void setPrice(int price);
 	bool checkTicket(int id);
@@ -64,6 +67,7 @@ class CinemaTicket : public Ticket {
 	CinemaZones zone = CinemaZones::Normal;
 public:
 	CinemaTicket();
+	CinemaTicket(CinemaTicket& other);
 	CinemaTicket(Event event, CinemaZones zone);
 	CinemaZones getZone();
 	void print() override;
