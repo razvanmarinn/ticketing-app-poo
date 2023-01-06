@@ -2,7 +2,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-
+#include <cstdlib>
 
 
 
@@ -27,16 +27,21 @@ int TicketingMenu::main_menu() {
 
 		int choice;
 		std::cin >> choice;
-
+		system("cls");
 		switch (choice) {
 		case 1:
 			while (true) {
 				for (auto i = 0; i < this->nr_of_avalaible_tickets; i++) {
-					avalaibletickets[i]->print();
+					if (avalaibletickets[i]->getAvalaiblity() == 1){ avalaibletickets[i]->print(); }
+					
 				}
 				std::cout << std::endl << "Which ticket do you want?" << std::endl;
 				for (auto i = 0; i < this->nr_of_avalaible_tickets; i++) {
-					std::cout << std::endl << i + 1 << ". Ticket " << i + 1 ;
+					if (avalaibletickets[i]->getAvalaiblity() == 1) { std::cout << std::endl << i + 1 << ". Ticket " << i + 1; }
+				}
+				if (this->nr_of_avalaible_tickets == 0) {
+					std::cout << std::endl << "There are no tickets avalaible" << std::endl;
+					break;
 				}
 				
 				std::cout << std::endl << "9. Back to main menu" << std::endl;
@@ -47,22 +52,27 @@ int TicketingMenu::main_menu() {
 				switch (choice2) {
 				case 1: {
 					this->actualuser->buyTicket(this->avalaibletickets[0]);
+					this->nr_of_avalaible_tickets--;
 					break;
 				}
 				case 2: {
 					this->actualuser->buyTicket(this->avalaibletickets[1]);
+					this->nr_of_avalaible_tickets--;
 					break;
 				}
 				case 3: {
 					this->actualuser->buyTicket(this->avalaibletickets[2]);
+					this->nr_of_avalaible_tickets--;
 					break;
 
 				case 4: {
 					this->actualuser->buyTicket(this->avalaibletickets[3]);
+					this->nr_of_avalaible_tickets--;
 					break;
 				} 
 				case 5: {
 					this->actualuser->buyTicket(this->avalaibletickets[4]);
+					this->nr_of_avalaible_tickets--;
 					break;
 				}
 				case 6: {
@@ -99,18 +109,18 @@ int TicketingMenu::main_menu() {
 
 void TicketingMenu::create_ticket() {
 	std::cout << "Create ticket" << std::endl;
-	//std::cout << "1. Fotball Ticket" << std::endl;
+	std::cout << "1. Fotball Ticket" << std::endl;
 	std::cout << "2. Cinema Ticket" << std::endl;
-	//std::cout << "3. Theater Ticket" << std::endl;
+	std::cout << "3. Theater Ticket" << std::endl;
 	std::cout << "4. Quit" << std::endl;
 	
 	int choice;
 	std::cin >> choice;
-
+	system("cls");
 	switch (choice) {
 	case 1: {
-
-		this->create_fotball_ticket();
+		FotballTicket* ticket = this->create_fotball_ticket();
+		this->avalaibletickets[this->nr_of_avalaible_tickets] = ticket;
 		this->nr_of_avalaible_tickets++;
 
 	}; break;
@@ -122,8 +132,8 @@ void TicketingMenu::create_ticket() {
 
 	}; break;
 	case 3: {
-
-		this->create_theater_ticket();
+		TheaterTicket* ticket = this->create_theater_ticket();
+		this->avalaibletickets[this->nr_of_avalaible_tickets] = ticket;
 		this->nr_of_avalaible_tickets++;
 
 	}; break;

@@ -24,6 +24,10 @@ public:
 	TheaterTicket* create_theater_ticket();
 	void create_user();
 
+	void create_file();
+	void start_files(int argc, char* argv[]);
+	
+
 
 
 

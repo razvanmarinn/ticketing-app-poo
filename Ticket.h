@@ -1,6 +1,6 @@
 #pragma once
 #include "Event.h"
-
+#include <fstream>
 
 enum FotballZones {
 	Stand1,
@@ -24,7 +24,7 @@ class Ticket {
 	
 protected:
 	Event event;
-	bool avalaible;
+	bool avalaible = true;
 public:
 	Ticket(); 
 	Ticket(Event event);
@@ -37,10 +37,10 @@ public:
 	void setPrice(int price);
 	bool checkTicket(int id);
 	virtual void print() = 0;
-
+	void ReadFromFile(std::ifstream& in_file);
 	friend class FotballTicket;
 	friend class CinemaTicket;
-	//friend class TheaterTicket;
+	friend class TheaterTicket;
 
 
 	void operator=(Ticket& ticket);
@@ -57,6 +57,7 @@ public:
 	FotballTicket(Event event, FotballZones zone);
 	FotballZones getZone();
 	void print() override;
+	FotballTicket* ReadFromFile(std::ifstream& in_file) ;
 	friend std::istream& operator>>(std::istream& in, FotballTicket* ticket);
 };
 
@@ -71,15 +72,17 @@ public:
 	CinemaTicket(Event event, CinemaZones zone);
 	CinemaZones getZone();
 	void print() override;
+	void ReadFromFile(std::ifstream& in_file) ;
 	friend std::istream& operator>>(std::istream& in, CinemaTicket* ticket);
 };
 
 class TheaterTicket : public Ticket {
-	TheaterZones zone;
+	TheaterZones zone = TheaterZones::Category1;
 public:
 	TheaterTicket();
 	TheaterTicket(Event event, TheaterZones zone);
 	TheaterZones getZone();
 	void print() override;
+	void ReadFromFile(std::ifstream& in_file) ;
 	friend std::istream& operator>>(std::istream& in, TheaterTicket* ticket);
 };

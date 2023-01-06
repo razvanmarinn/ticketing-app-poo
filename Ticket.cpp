@@ -12,13 +12,82 @@ Ticket::Ticket():ticketId(rand()){
 CinemaTicket::CinemaTicket(CinemaTicket& other) :Ticket(other.getPrice(), other.event), zone(other.zone) {
 }
 
+
+FotballTicket* FotballTicket::ReadFromFile(std::ifstream& in_file) {
+
+	Date date(1999, 10, 10);
+	Seats seat1(1, Avalaible::FREE);
+	Seats seat2(2, Avalaible::FREE);
+
+	Seats* seats = new Seats[2];
+
+	seats[0] = seat1;
+	seats[1] = seat2;
+	
+	location location1(1, 4, seats);
+
+	Event event(date, "Fotball Meci", 90, location1, 2);
+
+	int choice;
+	in_file >> choice;
+	if (choice == 0) {
+		std::cout << std::endl <<"Created ticket fotball for stand1 " << std::endl;
+		FotballTicket* ticket = new FotballTicket(event, FotballZones::Stand1);
+		ticket->print();
+		return ticket;
+	}
+	else {
+		std::cout << std::endl << "Created ticket fotball for stand2 " << std::endl;
+		FotballTicket* ticket = new FotballTicket(event, FotballZones::Stand2);
+		ticket->print();
+		return ticket;
+	}
+	
+	
+	
+	
+}
+void CinemaTicket::ReadFromFile(std::ifstream& in_file) {
+	in_file >> price;
+	int choice;
+	in_file >> choice;
+	if (choice == 0){
+		this->zone = CinemaZones::VIP; 
+	}
+	else {
+		this->zone = CinemaZones::Normal; 
+	}
+
+}
+
+void TheaterTicket::ReadFromFile(std::ifstream& in_file) {
+	in_file >> price;
+	int choice;
+	in_file >> choice;
+	switch (choice) {
+	case 1:
+		this->zone = TheaterZones::Category1;
+		break;
+	case 2:
+		this->zone = TheaterZones::Category2;
+		break;
+	case 3:
+		this->zone = TheaterZones::Box;
+		break;
+	}
+
+}
+
+
+
+
 bool Ticket::getAvalaiblity() {
 	return this->avalaible;
 }
 
 
 void Ticket::setAvalaibility() {
-	this->avalaible = true;
+	this->avalaible = false;
 
 }
 
