@@ -18,7 +18,7 @@ void File::start_files(std::string filename) {
 		
 		this->tickets = new Ticket * [this->number_of_tickets + 1];
 		this->tickets[this->number_of_tickets] = ticket;
-
+		this->number_of_tickets++;
 
 	}
 	if (!file.is_open()) {
@@ -31,4 +31,8 @@ void File::start_files(std::string filename) {
 
 Ticket* File::getTickets(int nr) {
 	return this->tickets[nr];
+}
+
+int File::getNumberOfTickets() {
+	return this->number_of_tickets;
 }
