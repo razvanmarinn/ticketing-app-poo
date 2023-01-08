@@ -32,12 +32,12 @@ public:
 	int getId();
 	int getPrice();
 	bool getAvalaiblity();
-	void setAvalaibility();
+	void setAvalaibilityFalse();
+	void setAvalaibilityTrue();
 	std::string getNameOfTheEvent();
 	void setPrice(int price);
 	bool checkTicket(int id);
 	virtual void print() = 0;
-	void ReadFromFile(std::ifstream& in_file);
 	friend class FotballTicket;
 	friend class CinemaTicket;
 	friend class TheaterTicket;
@@ -54,10 +54,11 @@ class FotballTicket : public Ticket {
 	FotballZones zone = FotballZones::Stand1;
 public:
 	FotballTicket();
+	FotballTicket(FotballTicket& ticket);
 	FotballTicket(Event event, FotballZones zone);
 	FotballZones getZone();
+	static FotballTicket* read(std::istream& in_stream) ;
 	void print() override;
-	FotballTicket* ReadFromFile(std::ifstream& in_file) ;
 	friend std::istream& operator>>(std::istream& in, FotballTicket* ticket);
 };
 
@@ -72,7 +73,6 @@ public:
 	CinemaTicket(Event event, CinemaZones zone);
 	CinemaZones getZone();
 	void print() override;
-	void ReadFromFile(std::ifstream& in_file) ;
 	friend std::istream& operator>>(std::istream& in, CinemaTicket* ticket);
 };
 
@@ -83,6 +83,5 @@ public:
 	TheaterTicket(Event event, TheaterZones zone);
 	TheaterZones getZone();
 	void print() override;
-	void ReadFromFile(std::ifstream& in_file) ;
 	friend std::istream& operator>>(std::istream& in, TheaterTicket* ticket);
 };

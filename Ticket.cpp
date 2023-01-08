@@ -11,72 +11,10 @@ Ticket::Ticket():ticketId(rand()){
 }
 CinemaTicket::CinemaTicket(CinemaTicket& other) :Ticket(other.getPrice(), other.event), zone(other.zone) {
 }
-
-
-FotballTicket* FotballTicket::ReadFromFile(std::ifstream& in_file) {
-
-	Date date(1999, 10, 10);
-	Seats seat1(1, Avalaible::FREE);
-	Seats seat2(2, Avalaible::FREE);
-
-	Seats* seats = new Seats[2];
-
-	seats[0] = seat1;
-	seats[1] = seat2;
-	
-	location location1(1, 4, seats);
-
-	Event event(date, "Fotball Meci", 90, location1, 2);
-
-	int choice;
-	in_file >> choice;
-	if (choice == 0) {
-		std::cout << std::endl <<"Created ticket fotball for stand1 " << std::endl;
-		FotballTicket* ticket = new FotballTicket(event, FotballZones::Stand1);
-		ticket->print();
-		return ticket;
-	}
-	else {
-		std::cout << std::endl << "Created ticket fotball for stand2 " << std::endl;
-		FotballTicket* ticket = new FotballTicket(event, FotballZones::Stand2);
-		ticket->print();
-		return ticket;
-	}
-	
-	
-	
-	
-}
-void CinemaTicket::ReadFromFile(std::ifstream& in_file) {
-	in_file >> price;
-	int choice;
-	in_file >> choice;
-	if (choice == 0){
-		this->zone = CinemaZones::VIP; 
-	}
-	else {
-		this->zone = CinemaZones::Normal; 
-	}
-
+FotballTicket::FotballTicket(FotballTicket& ticket) : Ticket(ticket.getPrice(), ticket.event), zone(ticket.zone) {
 }
 
-void TheaterTicket::ReadFromFile(std::ifstream& in_file) {
-	in_file >> price;
-	int choice;
-	in_file >> choice;
-	switch (choice) {
-	case 1:
-		this->zone = TheaterZones::Category1;
-		break;
-	case 2:
-		this->zone = TheaterZones::Category2;
-		break;
-	case 3:
-		this->zone = TheaterZones::Box;
-		break;
-	}
-
-}
+	
 
 
 
@@ -86,31 +24,89 @@ bool Ticket::getAvalaiblity() {
 }
 
 
-void Ticket::setAvalaibility() {
+void Ticket::setAvalaibilityFalse() {
 	this->avalaible = false;
 
 }
+void Ticket::setAvalaibilityTrue() {
+	this->avalaible = true;
+
+}
+
+FotballTicket* FotballTicket::read(std::istream& in_stream) {
+	int year, month, day;
+	in_stream >> year >> month >> day;
+	Date date(year, month, day);
+
+	std::string name;
+	in_stream >> name;
+	const char* name_char = name.c_str();
+
+	int duration;
+	in_stream >> duration;
+
+	int number_of_seats;
+	in_stream >> number_of_seats;
+	Seats* seats = new Seats[number_of_seats];
+	for (int i = 0; i < number_of_seats; i++) {
+		
+		int seat_number;
+		in_stream >> seat_number;
+	
+		int seat_status;
+		in_stream >> seat_status;
+		Seats seat(seat_number, (Avalaible)seat_status);
+		seats[i] = seat;
+	}
+
+	int zone;
+	in_stream >> zone;
+	location loc(number_of_seats, number_of_seats, seats);
+	Event event(date, name_char, duration, loc, number_of_seats);
+	FotballTicket* fotbalticket = new FotballTicket(event, (FotballZones)zone);
+	fotbalticket->print();
+	return fotbalticket;
+}
+
 
 std::istream& operator>>(std::istream& in, FotballTicket* ticket) {
-	std::cout << "Enter the event name: ";
-	Event event;
-	in >> event;
 
-	std::cout << "Enter the price: ";
-	int price;
-	in >> price;
-	ticket->setPrice(price);
-	bool avalaible;
-	std::cout << "Enter avalaibility ";
-	in >> avalaible;
-	ticket->avalaible = avalaible;
-
-	std::cout << "Enter the zone: ";
+	std::cout << "Create fotball ticket" << std::endl;
+	Date date;
+	std::cin >> date;
+	std::cout << "Enter the event name: " << std::endl;
+	std::string name;
+	std::cin >> name;
+	const char* name_char = name.c_str();
+	std::cout << "Enter the duration: " << std::endl;
+	int duration;
+	std::cin >> duration;
+	std::cout << "Enter the number of seats: " << std::endl;
+	int number_of_seats;
+	std::cin >> number_of_seats;
+	Seats* seats = new Seats[number_of_seats];
+	for (int i = 0; i < number_of_seats; i++) {
+		std::cout << "Enter the seat number: " << std::endl;
+		int seat_number;
+		std::cin >> seat_number;
+		std::cout << "Enter the seat status: " << std::endl;
+		int seat_status;
+		std::cin >> seat_status;
+		Seats seat(seat_number, (Avalaible)seat_status);
+		seats[i] = seat;
+	}
+	std::cout << "Enter the zone: " << std::endl;
 	int zone;
-	in >> zone;
-	ticket->zone = static_cast<FotballZones>(zone);
-
+	std::cin >> zone;
+	
+	location loc(number_of_seats, number_of_seats, seats);
+	Event event(date, name_char, duration, loc, number_of_seats);
+	FotballTicket* fotbalticket = new FotballTicket(event, (FotballZones)zone);
+	fotbalticket->print();
+	
 	return in;
+	
+	
 }
 
 

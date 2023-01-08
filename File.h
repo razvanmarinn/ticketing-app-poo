@@ -2,7 +2,7 @@
 #include <fstream>
 #include <cstdlib>
 #include "Ticket.h"
-#include "Ticket.h"
+#include "Location.h"
 #include "Date.h"
 #include "Seats.h"
 #include "Event.h"
@@ -13,8 +13,10 @@
 class File {
 	std::fstream file;
 	std::string name;
+protected:
 	Ticket** tickets = nullptr;
 	int number_of_tickets = 0;
+
 
 
 
@@ -22,7 +24,7 @@ class File {
 public:
 	~File();
 	void start_files(std::string filename);
-	void create_file();
 	int getNumberOfTickets();
+	Ticket* getTickets(int nr);
 
 };

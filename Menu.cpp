@@ -4,14 +4,15 @@
 #include <thread>
 #include <cstdlib>
 
-
-
-
 TicketingMenu::TicketingMenu() {
-
-	std::array<Ticket*, 5> tickets{};
+	this->actualuser = nullptr;
 	this->nr_of_avalaible_tickets = 0;
-	
+}
+
+
+void TicketingMenu::add_ticket(Ticket* ticket) {
+	this->avalaibletickets[0] = ticket;
+	this->nr_of_avalaible_tickets++;
 }
 
 int TicketingMenu::main_menu() {
@@ -153,10 +154,9 @@ void TicketingMenu::create_ticket() {
 FotballTicket* TicketingMenu::create_fotball_ticket() {
 	{
 		std::cout << "Create fotball ticket" << std::endl;
-		std::cout << "Enter the date: " << std::endl;
-		int year, month, day;
-		std::cin >> year >> month >> day;
-		Date date(year, month, day);
+		
+		Date date;
+		std::cin >> date;
 		std::cout << "Enter the event name: " << std::endl;
 		std::string name;
 		std::cin >> name;
@@ -186,6 +186,7 @@ FotballTicket* TicketingMenu::create_fotball_ticket() {
 		FotballTicket* fotbalticket = new FotballTicket(event, (FotballZones)zone);
 		fotbalticket->print();
 		return fotbalticket;
+
 	}
 }
 
@@ -193,10 +194,8 @@ FotballTicket* TicketingMenu::create_fotball_ticket() {
 
 CinemaTicket* TicketingMenu::create_cinema_ticket() {
 	std::cout << "Create cinema ticket" << std::endl;
-	std::cout << "Enter the date: " << std::endl;
-	int year, month, day;
-	std::cin >> year >> month >> day;
-	Date date(year, month, day);
+	Date date;
+	std::cin >> date;
 	std::cout << "Enter the event name: " << std::endl;
 	std::string name;
 	std::cin >> name;
@@ -230,10 +229,8 @@ CinemaTicket* TicketingMenu::create_cinema_ticket() {
 
 TheaterTicket* TicketingMenu::create_theater_ticket() {
 	std::cout << "Create theater ticket" << std::endl;
-	std::cout << "Enter the date: " << std::endl;
-	int year, month, day;
-	std::cin >> year >> month >> day;
-	Date date(year, month, day);
+	Date date;
+	std::cin >> date;
 	std::cout << "Enter the event name: " << std::endl;
 	std::string name;
 	std::cin >> name;

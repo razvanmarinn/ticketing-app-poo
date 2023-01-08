@@ -14,10 +14,15 @@ int main(int argc, char* argv[]) {
 		std::cout << "Processing file: " << filename << std::endl;
 		// Process the file here
 		file.start_files(filename);
-		
-		
-		
-		
+		menu.add_ticket(file.getTickets(0));
+
+		std::cout << std::endl;
+		menu.create_user();
+	
+
+
+
+
 	}
 	else {
 		std::cout << "No file specified, using menu mode." << std::endl;
