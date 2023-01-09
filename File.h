@@ -2,6 +2,9 @@
 #include <fstream>
 #include <cstdlib>
 #include "Ticket.h"
+#include "FotballTicket.h"
+#include "TheaterTicket.h"
+#include "CinemaTicket.h"
 #include "Location.h"
 #include "Date.h"
 #include "Seats.h"

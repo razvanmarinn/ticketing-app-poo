@@ -17,7 +17,6 @@ enum CinemaZones {
 };
 
 
-
 class Ticket {
 	const int ticketId;
 	int price = 0;
@@ -32,8 +31,7 @@ public:
 	int getId();
 	int getPrice();
 	bool getAvalaiblity();
-	void setAvalaibilityFalse();
-	void setAvalaibilityTrue();
+	void setAvalaibility();
 	std::string getNameOfTheEvent();
 	void setPrice(int price);
 	virtual bool checkTicket(int id);
@@ -48,47 +46,4 @@ public:
 	void operator+(int price);
 
 	friend std::ostream& operator<<(std::ostream& out, Ticket& ticket);
-};
-
-
-class FotballTicket : public Ticket {
-	FotballZones zone = FotballZones::Stand1;
-public:
-	FotballTicket();
-	FotballTicket(FotballTicket& ticket);
-	FotballTicket(Event event, FotballZones zone);
-	FotballZones getZone();
-	static FotballTicket* read(std::istream& in_stream) ;
-	void print() override;
-	void write(std::ostream& out_stream)  override;
-	bool checkTicket(int id) override;
-	friend std::istream& operator>>(std::istream& in, FotballTicket* ticket);
-};
-
-
-
-
-class CinemaTicket : public Ticket {
-	CinemaZones zone = CinemaZones::Normal;
-public:
-	CinemaTicket();
-	CinemaTicket(CinemaTicket& other);
-	CinemaTicket(Event event, CinemaZones zone);
-	CinemaZones getZone();
-	void print() override;
-	bool checkTicket(int id) override;
-	void write(std::ostream& out_stream)  override;
-	friend std::istream& operator>>(std::istream& in, CinemaTicket* ticket);
-};
-
-class TheaterTicket : public Ticket {
-	TheaterZones zone = TheaterZones::Category1;
-public:
-	TheaterTicket();
-	TheaterTicket(Event event, TheaterZones zone);
-	TheaterZones getZone();
-	void print() override;
-	bool checkTicket(int id) override;
-	void write(std::ostream& out_stream)  override;
-	friend std::istream& operator>>(std::istream& in, TheaterTicket* ticket);
 };

@@ -1,6 +1,9 @@
 #pragma once
 #include <stdlib.h>
 #include "Ticket.h"
+#include "FotballTicket.h"
+#include "TheaterTicket.h"
+#include "CinemaTicket.h"
 #include "Date.h"
 #include "Seats.h"
 #include "Event.h"

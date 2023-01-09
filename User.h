@@ -1,5 +1,8 @@
 #pragma once
 #include "Ticket.h"
+#include "FotballTicket.h"
+#include "TheaterTicket.h"
+#include "CinemaTicket.h"
 
 class User {
 	Ticket** tickets ;
