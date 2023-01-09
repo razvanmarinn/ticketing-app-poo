@@ -67,6 +67,9 @@ User::User(int balance, Ticket* ticket) {
 }
 
 void User::buyTicket(Ticket* ticket) {
+	if (ticket->getPrice() > this->balance) {
+		throw std::string("Something went wrong");
+	}
 	this->setTickets(ticket);
 	this->balance = this->balance - ticket->getPrice();
 	ticket->setAvalaibilityFalse();

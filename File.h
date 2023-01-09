@@ -22,9 +22,11 @@ protected:
 
 	
 public:
+	File(std::string filename);
+	File();
 	~File();
 	void start_files(std::string filename);
 	int getNumberOfTickets();
 	Ticket* getTickets(int nr);
-
+	void outputTickets(Ticket** tickets, int nr_of_tickets, std::string filename);
 };

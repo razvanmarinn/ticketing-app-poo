@@ -25,7 +25,7 @@ public:
 	TheaterTicket* create_theater_ticket();
 	void create_user();
 	void add_ticket(Ticket* ticket);
-
+	void remove_ticket(int id);
 
 
 	void create_file();

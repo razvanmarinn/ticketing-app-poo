@@ -3,7 +3,7 @@
 #include <chrono>
 #include <thread>
 #include <cstdlib>
-
+#include "File.h"
 TicketingMenu::TicketingMenu() {
 	this->actualuser = nullptr;
 	this->nr_of_avalaible_tickets = 0;
@@ -23,7 +23,8 @@ int TicketingMenu::main_menu() {
 		std::cout << std::endl << "1. Buy tickets" << std::endl;
 		std::cout << "2. List tickets" << std::endl;
 		std::cout << "3. Add ticket" << std::endl;
-		std::cout << "4. Quit" << std::endl;
+		std::cout << "4. Remove ticket" << std::endl;
+		std::cout << "5. Quit" << std::endl;
 		std::cout << "Enter your choice: ";
 
 		int choice;
@@ -96,7 +97,27 @@ int TicketingMenu::main_menu() {
 			this->create_ticket();
 			break;
 		case 4:
-			return 0;
+			std::cout << "Remove ticket : Enter number" << std::endl;
+			int number;
+			std::cin >> number;
+			this->remove_ticket(number);
+			break;
+		case 5:
+			std::cout << " Do you want to save the avalaible tickets? Y/N ";
+			char choice3;
+			std::cin >> choice3;
+			if (choice3 == 'Y') {
+				std::cout << "Input the filename ";
+				std::string filename;
+				std::cin >> filename;
+				File file(filename);
+				file.outputTickets(this->avalaibletickets.data(), this->nr_of_avalaible_tickets, filename);
+				std::cout << "Tickets saved" << std::endl;
+				return 0;
+			}
+			else {
+				return 0;
+			}
 		default:
 			std::cout << "Invalid choice." << std::endl;
 			break;
@@ -279,4 +300,17 @@ void TicketingMenu::create_user() {
 	std::cout << std::endl;
 
 	
+}
+
+
+void TicketingMenu::remove_ticket(int id) {
+	for (auto i = 0; i < this->nr_of_avalaible_tickets; i++) {
+		if (this->avalaibletickets[i]->getId() == id) {
+			delete this->avalaibletickets[i];
+			this->avalaibletickets[i] = this->avalaibletickets[this->nr_of_avalaible_tickets - 1];
+			this->nr_of_avalaible_tickets--;
+			std::cout << "Ticket removed" << std::endl;
+		
+		}
+	}
 }

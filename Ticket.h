@@ -36,7 +36,8 @@ public:
 	void setAvalaibilityTrue();
 	std::string getNameOfTheEvent();
 	void setPrice(int price);
-	bool checkTicket(int id);
+	virtual bool checkTicket(int id);
+	virtual void write(std::ostream& out_stream)  = 0;
 	virtual void print() = 0;
 	friend class FotballTicket;
 	friend class CinemaTicket;
@@ -59,6 +60,8 @@ public:
 	FotballZones getZone();
 	static FotballTicket* read(std::istream& in_stream) ;
 	void print() override;
+	void write(std::ostream& out_stream)  override;
+	bool checkTicket(int id) override;
 	friend std::istream& operator>>(std::istream& in, FotballTicket* ticket);
 };
 
@@ -73,6 +76,8 @@ public:
 	CinemaTicket(Event event, CinemaZones zone);
 	CinemaZones getZone();
 	void print() override;
+	bool checkTicket(int id) override;
+	void write(std::ostream& out_stream)  override;
 	friend std::istream& operator>>(std::istream& in, CinemaTicket* ticket);
 };
 
@@ -83,5 +88,7 @@ public:
 	TheaterTicket(Event event, TheaterZones zone);
 	TheaterZones getZone();
 	void print() override;
+	bool checkTicket(int id) override;
+	void write(std::ostream& out_stream)  override;
 	friend std::istream& operator>>(std::istream& in, TheaterTicket* ticket);
 };

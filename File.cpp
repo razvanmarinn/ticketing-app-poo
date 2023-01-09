@@ -36,3 +36,23 @@ Ticket* File::getTickets(int nr) {
 int File::getNumberOfTickets() {
 	return this->number_of_tickets;
 }
+
+
+
+void File::outputTickets(Ticket** tickets, int nr_of_tickets, std::string filename) {
+	std::ofstream file;
+	file.open(filename);
+	for (auto i = 0; i < nr_of_tickets; i++) {
+		tickets[i]->write(file);
+	}
+	file.close();
+}
+
+
+File::File(std::string filename) {
+	this->name = filename;
+}
+
+File::File() {
+	
+}

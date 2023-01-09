@@ -15,8 +15,33 @@ FotballTicket::FotballTicket(FotballTicket& ticket) : Ticket(ticket.getPrice(), 
 }
 
 	
+bool FotballTicket::checkTicket(int id) {
+	if (this->ticketId == id) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 
 
+bool CinemaTicket::checkTicket(int id) {
+	if (this->ticketId == id) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool TheaterTicket::checkTicket(int id) {
+	if (this->ticketId == id) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 
 
 bool Ticket::getAvalaiblity() {
@@ -301,4 +326,29 @@ void TheaterTicket::print() {
 	}
 	std::cout << std::endl << "======================";
 
+}
+
+
+void FotballTicket::write(std::ostream& out_stream)  {
+	out_stream << this->getId() << std::endl;
+	out_stream << this->getNameOfTheEvent() << std::endl;
+	out_stream << this->getPrice() << std::endl;
+	out_stream << this->getZone() << std::endl;
+	out_stream << this->getAvalaiblity() << std::endl;
+}
+
+void CinemaTicket::write(std::ostream& out_stream) {
+	out_stream << this->getId() << std::endl;
+	out_stream << this->getNameOfTheEvent() << std::endl;
+	out_stream << this->getPrice() << std::endl;
+	out_stream << this->getZone() << std::endl;
+	out_stream << this->getAvalaiblity() << std::endl;
+}
+
+void TheaterTicket::write(std::ostream& out_stream) {
+	out_stream << this->getId() << std::endl;
+	out_stream << this->getNameOfTheEvent() << std::endl;
+	out_stream << this->getPrice() << std::endl;
+	out_stream << this->getZone() << std::endl;
+	out_stream << this->getAvalaiblity() << std::endl;
 }
